@@ -13,7 +13,8 @@
         display: block;
     }
     .paper{
-        padding: 8px 16px;
+        // padding: 8px 16px;
+        padding: rem(4) rem(8);
         background-color: white;
         border-radius: 4px;
         color: $color-black;

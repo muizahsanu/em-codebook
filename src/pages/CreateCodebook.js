@@ -9,12 +9,15 @@ import 'codemirror/mode/css/css'
 import 'codemirror/mode/jsx/jsx'
 import { useState } from 'react';
 import { db } from '../firebase/config';
-import { doc, setDoc } from '@firebase/firestore';
+import { addDoc, collection} from '@firebase/firestore';
+import { useNavigate } from 'react-router-dom';
 
 export default function CreateCodebook(){
     const [mode, setMode] = useState('xml')
     const [title, setTitle] = useState('')
     const [codeSnippet, setCodeSnippet] = useState('')
+
+    const navigate = useNavigate()
 
     const handleSelectChange = (newMode) => {
         setMode(newMode)
@@ -35,7 +38,10 @@ export default function CreateCodebook(){
         }
 
         const addNewData = async (newData)=>{
-            await setDoc(doc(db, "codebooks", '1'), newData)
+            const docRef = await addDoc(collection(db, "codebooks"),newData)
+            if(docRef){
+                navigate('/codebook')
+            }
         }
         addNewData(newData)
     }

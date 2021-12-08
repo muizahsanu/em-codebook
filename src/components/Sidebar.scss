@@ -1,79 +1,133 @@
-@use '../scss/utils/' as *;
+@use "../scss/utils/" as *;
 
-.sidebar{
+.sidebar {
+  z-index: 10;
+  position: relative;
+  min-width: 220px;
+  height: 100%;
+  top: 0;
+  left: 0;
+  padding: 18px;
+  background-color: $color-black;
+  color: white;
+
+  @include breakpoint(medium){
     position: fixed;
-    min-width: 220px;
-    height: 100%;
-    top: 0;
-    left: 0;
-    padding: 18px;
-    background-color: $color-black;
-    color: white;
-
+  }
+  
+  &.show{
+    .menus{
+      max-height: rem(303);
+    }
+    .sidebar__togglebutton{
+      top: 100%;
+      bottom: unset;
+    }
     .creates{
-        max-height: 42px;
-        overflow: hidden;
-        transition: max-height 500ms;
-        &__content{
-            margin-top: 8px;
-            display: flex;
-            flex-direction: column;
-            font-size: 14px;
-        }
-        &__content > *{
-            background-color: $color-orange !important;
-            color: $color-black !important;
-        }
-        &__content > *:not(:last-child){
-            margin-bottom: 4px;
-        }
-        &:hover{
-            max-height: 168px;
-        }
+      max-height: rem(42);
     }
+  }
 
-    .content{
-        margin-top: 16px;
-        .title{
-            margin-bottom: 8px;
-            font-weight: 700;
-            color: $color-orange;
-        }
-        .menus{
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 14px;
-            padding: 8px;
-            border-radius: 4px;
-            opacity: .8;
-            &:hover{
-                opacity: 1;
-            }
-            &.active{
-                background-color: $color-green;
-                color: $color-purple;
-                opacity: 1;
-            }
-        }
-        .icon{
-            font-size: 18px;
-        }
-
+  .creates {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 500ms;
+    @include breakpoint(medium){
+      max-height: rem(42);
     }
-    
-
-    .btn-icon{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 4px;
-        padding: 8px;
-        border-radius: 4px;
-        background-color: $color-green;
-        color: $color-purple;
-        &:hover{
-            filter: brightness(.8);
-        }
+    &__content {
+      margin-top: 8px;
+      display: flex;
+      flex-direction: column;
+      font-size: 14px;
     }
+    &__content > * {
+      background-color: $color-orange !important;
+      color: $color-black !important;
+    }
+    &__content > *:not(:last-child) {
+      margin-bottom: 4px;
+    }
+    &:hover {
+      max-height: 168px;
+    }
+  }
+
+  .menus{
+    margin-top: rem(18);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 500ms;
+    @include breakpoint(medium){
+      max-height: none;
+    }
+    & > *:not(:first-child, :last-child) {
+      margin-top: rem(8);
+    }
+    &__title{
+      color: $color-orange;
+      font-weight: 700;
+    }
+    &__head, &__body .menu{
+      opacity: .8;
+      padding: rem(4) rem(8);
+      font-size: rem(14);
+      border-left: 1px solid $color-orange;
+      border-bottom: 1px solid $color-orange;
+    }
+    &__head{
+      display: flex;
+      align-items: center;
+      gap: rem(4);
+      .icon{ font-size: rem(18); }
+      
+      &.active{
+        background-color: $color-orange;
+        color: white;
+        opacity: 1;
+      }
+    }
+    &__body{
+      margin-left: rem(18);
+      max-height: rem(240);
+      overflow: auto;
+      .menu{
+        display: block;
+        &:hover{ opacity: 1;}
+        &.active{
+          background-color: $color-orange;
+          color: white;
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  &__togglebutton{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: $color-green;
+    color: $color-purple;
+    text-align: center;
+    cursor: pointer;
+    @include breakpoint(medium){
+      display: none;
+    }
+  }
+
+  .btn-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 8px;
+    border-radius: 4px;
+    background-color: $color-green;
+    color: $color-purple;
+    &:hover {
+      filter: brightness(0.8);
+    }
+  }
 }

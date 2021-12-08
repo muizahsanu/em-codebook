@@ -1,7 +1,10 @@
 import { Link } from 'react-router-dom'
+import { useFetch } from '../firebase/useFetch'
 import './Codebook.scss'
 
 export default function Codebook() { 
+    const {data: codebookData} = useFetch('codebooks')
+
     return (
         <div className="codebook">
             <form className="input-query">
@@ -16,24 +19,14 @@ export default function Codebook() {
             </form>
             <h3>List Codebook</h3>
             <div className="papers">
-                <div className="paper">
-                    <Link to='/codebook/javascript/useFetch'>useFetch</Link>
-                    <span className="book">on 
-                        <Link to="/codebook/javascript">Javascript</Link>
-                    </span>
-                </div>
-                <div className="paper">
-                    <Link to='/codebook/javascript/useFetch'>flexbox</Link>
-                    <span className="book">on 
-                        <Link to="/codebook/javascript">CSS</Link>
-                    </span>
-                </div>  
-                <div className="paper">
-                    <Link to='/codebook/javascript/useFetch'>reset</Link>
-                    <span className="book">on 
-                        <Link to="/codebook/javascript">CSS/SCSS</Link>
-                    </span>
-                </div>  
+                {codebookData && codebookData.map(item=>(
+                    <div className="paper" key={item.id}>
+                        <Link to='/codebook/javascript/useFetch'>{item.title}</Link>
+                        <span className="book">in 
+                            <Link to="/codebook/javascript">{item.language}</Link>
+                        </span>
+                    </div>
+                ))}
             </div>
         </div>
     )

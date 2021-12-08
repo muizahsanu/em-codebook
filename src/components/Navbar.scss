@@ -13,14 +13,17 @@
     }
 
     .user{
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        padding: 4px;
-        font-size: 12px;
+        // display: flex;
+        // align-items: center;
+        // gap: 8px;
+        // padding: 4px;
+        // font-size: 12px;
         margin-left: auto;
-        outline: 1px solid rgba($color: $color-orange, $alpha: .35);
-        border-radius: 4px;
+        // outline: 1px solid rgba($color: $color-orange, $alpha: .35);
+        // border-radius: 4px;
+        & > *:not(.profile){
+            display: none;
+        }
         .profile{
             width: 32px;
             height: 32px;
