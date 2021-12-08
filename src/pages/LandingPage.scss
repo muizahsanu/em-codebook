@@ -1,0 +1,39 @@
+@use '../scss/utils/' as *;
+
+.landing-page{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    color: #E59934;
+    background-color: #2C272E;
+  
+    .content{
+      text-align: center;
+    }
+  
+    .greet{
+      font-size: 28px;
+      font-weight: 700;
+    }
+  
+    .brand{
+      color: $color-green;
+    }
+  
+    .btn{
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      padding: 8px;
+      border-radius: 4px;
+      background-color: $color-green;
+      color: $color-black;
+      cursor: pointer;
+      i{
+        font-size: 18px;
+      }
+    }
+}

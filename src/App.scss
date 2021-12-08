@@ -1,0 +1,12 @@
+@import 'codemirror/lib/codemirror.css';
+@import 'codemirror/theme/material.css';
+
+
+.App{
+  .main{
+    margin-left: 220px;
+    &.lp{
+      margin-left: unset;
+    }
+  }
+}

@@ -1,0 +1,79 @@
+@use '../scss/utils/' as *;
+
+.sidebar{
+    position: fixed;
+    min-width: 220px;
+    height: 100%;
+    top: 0;
+    left: 0;
+    padding: 18px;
+    background-color: $color-black;
+    color: white;
+
+    .creates{
+        max-height: 42px;
+        overflow: hidden;
+        transition: max-height 500ms;
+        &__content{
+            margin-top: 8px;
+            display: flex;
+            flex-direction: column;
+            font-size: 14px;
+        }
+        &__content > *{
+            background-color: $color-orange !important;
+            color: $color-black !important;
+        }
+        &__content > *:not(:last-child){
+            margin-bottom: 4px;
+        }
+        &:hover{
+            max-height: 168px;
+        }
+    }
+
+    .content{
+        margin-top: 16px;
+        .title{
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: $color-orange;
+        }
+        .menus{
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            padding: 8px;
+            border-radius: 4px;
+            opacity: .8;
+            &:hover{
+                opacity: 1;
+            }
+            &.active{
+                background-color: $color-green;
+                color: $color-purple;
+                opacity: 1;
+            }
+        }
+        .icon{
+            font-size: 18px;
+        }
+
+    }
+    
+
+    .btn-icon{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        padding: 8px;
+        border-radius: 4px;
+        background-color: $color-green;
+        color: $color-purple;
+        &:hover{
+            filter: brightness(.8);
+        }
+    }
+}

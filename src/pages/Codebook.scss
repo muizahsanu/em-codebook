@@ -1,0 +1,57 @@
+@use '../scss/utils/' as *;
+
+.codebook{
+    padding: 18px;
+    
+    .papers{
+        margin-top: 8px;
+    }
+    .papers > *:not(:last-child){
+        margin-bottom: 12px;
+    }
+    .paper > *{
+        display: block;
+    }
+    .paper{
+        padding: 8px 16px;
+        background-color: white;
+        border-radius: 4px;
+        color: $color-black;
+        font-weight: 700;
+        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+        a{
+            opacity: .80;
+            &:hover{
+                opacity: 1;
+            }
+        }
+        .book{
+            font-size: 12px;
+            font-weight: 400;
+            a{margin-left: 4px; color: $color-purple; font-weight: 700;}
+        }
+    }
+
+    // Input Query
+    .input-query{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+        margin: 0 18px;
+        margin-bottom: 18px;
+        .formgroup > *{
+            display: block;
+        }
+        label{
+            font-size: 14px;
+            opacity: .5;
+        }
+        input{
+            width: 100%;
+            padding: 8px;
+            outline: none;
+            border: 1px solid purple;
+            border-radius: 4px;
+        }
+    }
+}

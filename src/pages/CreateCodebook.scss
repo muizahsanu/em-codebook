@@ -1,0 +1,47 @@
+@use '../scss/utils/' as *;
+
+@import 'codemirror/lib/codemirror.css';
+@import 'codemirror/theme/material.css';
+
+.create-codebook{
+    padding: 18px;
+
+    form{
+        .formgroup > *{
+            display: block;
+        }
+        label{
+            font-size: 18px;
+            margin-top: 16px;
+            margin-bottom: 4px;
+        }
+        input{
+            width: 100%;
+            padding: 8px;
+            outline: none;
+            border: 1px solid purple;
+            border-radius: 4px;
+        }
+        select{
+            width: 100%;
+            padding: 8px;
+            outline: none;
+            border: 1px solid purple;
+            border-radius: 4px;
+        }
+        .btn{
+            width: 100%;
+            padding: 8px;
+            margin-top: 16px;
+            background-color: $color-green;
+            color: $color-purple;
+            font-family: 'Poppins', sans-serif;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            &:hover{
+                filter: brightness(.86);
+            }
+        }
+    }
+}
