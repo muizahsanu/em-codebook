@@ -1,19 +1,12 @@
 import './CreateCode.scss'
 
-// CodeMirror
-import { UnControlled as CodeMirror } from 'react-codemirror2';
-import 'codemirror/mode/xml/xml'
-import 'codemirror/mode/javascript/javascript'
-import 'codemirror/mode/sass/sass'
-import 'codemirror/mode/css/css'
-import 'codemirror/mode/jsx/jsx'
-import 'codemirror/mode/php/php'
 import { useState } from 'react';
 import { db } from '../firebase/config';
 import { addDoc, collection, doc, setDoc} from '@firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import { useFetch } from '../firebase/useFetch';
 import { convertTitleToID } from '../helper/convertTitleToID';
+import CustomCodeMirror from '../components/CustomCodeMirror';
 
 export default function CreateCode(){
     const [codebook, setCodebook] = useState('')
@@ -23,6 +16,10 @@ export default function CreateCode(){
     const {data: codebooks} = useFetch('codebooks')
 
     const navigate = useNavigate()
+
+    const handleCodemirroInput = (value) =>{
+        console.log(value);
+    }
 
     const handleSubmit = (e) =>{
         e.preventDefault()
@@ -127,17 +124,7 @@ export default function CreateCode(){
                 {/* START Code snippet */}
                 <div className="formgroup">
                     <label htmlFor="">Code Snippet:</label>
-                    <CodeMirror
-                        value={codeSnippet}
-                        options={{
-                            mode: language,
-                            theme: 'dracula',
-                            lineNumbers: true
-                        }}
-                        onChange={(editor, data, value) => {
-                            setCodeSnippet(value)
-                        }}
-                    />
+                    <CustomCodeMirror onTextChange={handleCodemirroInput} />
                 </div>
                 {/* END Code snippet */}
                 <button className="btn">Add</button> 

@@ -22,9 +22,6 @@ export default function Codebook() {
                 {codebookData && codebookData.map(item=>(
                     <div className="paper" key={item.id}>
                         <Link to='/codebook/javascript/useFetch'>{item.name}</Link>
-                        {/* <span className="book">in 
-                            <Link to="/codebook/javascript">{item.language}</Link>
-                        </span> */}
                     </div>
                 ))}
             </div>

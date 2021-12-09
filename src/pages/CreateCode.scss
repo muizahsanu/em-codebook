@@ -1,8 +1,5 @@
 @use '../scss/utils/' as *;
 
-@import 'codemirror/lib/codemirror.css';
-@import 'codemirror/theme/dracula.css';
-
 .create-code{
     padding: 18px;
 
@@ -17,11 +14,11 @@
         .formgroup > *{
             display: block;
         }
-        label{
-            font-size: 18px;
-            margin-top: 16px;
-            margin-bottom: 4px;
-        }
+        // label{
+        //     font-size: 18px;
+        //     margin-top: 16px;
+        //     margin-bottom: 4px;
+        // }
         input{
             width: 100%;
             padding: 8px;
@@ -29,13 +26,13 @@
             border: 1px solid purple;
             border-radius: 4px;
         }
-        select{
-            width: 100%;
-            padding: 8px;
-            outline: none;
-            border: 1px solid purple;
-            border-radius: 4px;
-        }
+        // select{
+        //     width: 100%;
+        //     padding: 8px;
+        //     outline: none;
+        //     border: 1px solid purple;
+        //     border-radius: 4px;
+        // }
         .btn{
             width: 100%;
             padding: 8px;

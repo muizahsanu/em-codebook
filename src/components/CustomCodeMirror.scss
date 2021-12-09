@@ -1,0 +1,44 @@
+@use '../scss/utils/' as *;
+
+@import 'codemirror/lib/codemirror.css';
+@import 'codemirror/theme/base16-dark.css';
+@import 'codemirror/theme/base16-light.css';
+
+.codemirror{
+  border: 1px solid black;
+  border-radius: rem(4);
+  overflow: hidden;
+
+  .tab{
+    padding: rem(8);
+    display: flex;
+    align-items: center;
+    gap: rem(8);
+    &__item.right{
+      margin-left: auto;
+    }
+    &__item-btn{
+      border: 1px solid black;
+      border-radius: rem(2);
+      padding: rem(2);
+      background-color: white;
+      cursor: pointer;
+      &:hover{ filter: brightness(.85); }
+    }
+  }
+  .copied-message{
+    font-size: rem(12);
+    background-color: black;
+    color: white;
+    padding: rem(2) rem(4);
+    border-radius: rem(2);
+    margin-bottom: rem(2.5);
+    display: block;
+    opacity: 0;
+    transition: opacity 500ms;
+
+    &.show{
+      opacity: 1;
+    }
+  }
+}
