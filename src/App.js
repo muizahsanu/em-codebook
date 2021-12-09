@@ -12,6 +12,7 @@ import Codebook from './pages/Codebook';
 import Sidebar from './components/Sidebar';
 import Navbar from './components/Navbar';
 import { useState } from 'react';
+import CreateCode from './pages/CreateCode';
 import CreateCodebook from './pages/CreateCodebook';
 
 function App() {
@@ -32,14 +33,11 @@ function App() {
           <Routes>
             <Route path="/" element={<LandingPage handleIsLandingPage={handleIsLandingPage} /> } />
             <Route path="/codebook" element={<Codebook /> } />
-            <Route path="/codebook/create" element={<CreateCodebook /> } />
+            <Route path="/codebook/create-code" element={<CreateCode /> } />
+            <Route path="/codebook/create-codebook" element={<CreateCodebook /> } />
           </Routes>
         </div>
       </BrowserRouter>
-
-      {/* {data && data.map(data=> (
-        <div key={data.id}>{data.nama}</div>
-      ))} */}
     </div>
   );
 }

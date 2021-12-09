@@ -31,9 +31,14 @@ export default function Sidebar() {
 					<span className="text">Codebooks</span>
 				</NavLink>
 				<div className="menus__body">
-					<NavLink to="/codebook/javascript" className="menu">Javascript</NavLink>
-					<NavLink to="/codebook/scss" className="menu">SCSS</NavLink>
-					<NavLink to="/codebook/html" className="menu">HTML</NavLink>
+					<NavLink to="/codebook/create-codebook" className="menu">
+						<i className='bx bx-plus'></i>
+						New codebook
+					</NavLink>
+					<NavLink to="/codebook/create-code" className="menu">
+						<i class='bx bx-plus'></i>
+						New code snippet
+					</NavLink>
 				</div>
 			</div>
 			{/* END Menus */}
