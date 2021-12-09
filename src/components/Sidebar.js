@@ -31,12 +31,12 @@ export default function Sidebar() {
 					<span className="text">Codebooks</span>
 				</NavLink>
 				<div className="menus__body">
-					<NavLink to="/codebook/create-codebook" className="menu">
+					{/* <NavLink to="/codebook/create-codebook" className="menu">
 						<i className='bx bx-plus'></i>
 						New codebook
-					</NavLink>
+					</NavLink> */}
 					<NavLink to="/codebook/create-code" className="menu">
-						<i class='bx bx-plus'></i>
+						<i className='bx bx-plus'></i>
 						New code snippet
 					</NavLink>
 				</div>

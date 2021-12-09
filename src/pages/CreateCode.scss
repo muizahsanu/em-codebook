@@ -1,12 +1,19 @@
 @use '../scss/utils/' as *;
 
 @import 'codemirror/lib/codemirror.css';
-@import 'codemirror/theme/material.css';
+@import 'codemirror/theme/dracula.css';
 
 .create-code{
     padding: 18px;
 
     form{
+        .formgroup-hor{
+            display: flex;
+            gap: 16px;
+            & > *{
+                flex: 1;
+            }
+        }
         .formgroup > *{
             display: block;
         }

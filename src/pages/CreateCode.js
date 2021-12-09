@@ -10,19 +10,19 @@ import 'codemirror/mode/jsx/jsx'
 import 'codemirror/mode/php/php'
 import { useState } from 'react';
 import { db } from '../firebase/config';
-import { addDoc, collection} from '@firebase/firestore';
+import { addDoc, collection, doc, setDoc} from '@firebase/firestore';
 import { useNavigate } from 'react-router-dom';
+import { useFetch } from '../firebase/useFetch';
+import { convertTitleToID } from '../helper/convertTitleToID';
 
 export default function CreateCode(){
-    const [mode, setMode] = useState('xml')
+    const [codebook, setCodebook] = useState('')
     const [title, setTitle] = useState('')
     const [codeSnippet, setCodeSnippet] = useState('')
+    const [language, setLanguage] = useState('')
+    const {data: codebooks} = useFetch('codebooks')
 
     const navigate = useNavigate()
-
-    const handleSelectChange = (newMode) => {
-        setMode(newMode)
-    }
 
     const handleSubmit = (e) =>{
         e.preventDefault()
@@ -32,25 +32,42 @@ export default function CreateCode(){
             return
         }
 
-        const newData = {
-            title: title,
-            language: mode,
-            code_snippet: codeSnippet
+        console.log(codebook, title, codeSnippet, language);
+
+        const codebookID = convertTitleToID(codebook)
+
+        const codebookData = {
+            id: codebookID,
+            name: codebook
         }
 
-        const addNewData = async (newData)=>{
-            const docRef = await addDoc(collection(db, "codebooks"),newData)
+        const codeData = {
+            codebookID: codebookID,
+            codebookName: codebook,
+            title: title,
+            language: language,
+            codeSnippet: codeSnippet
+        }
+
+        const addNewData = async (codeData, codebookData)=>{
+            const docCodebook = doc(db, "codebooks", codebookID)
+            const subColRef = collection(db, "codebooks", codebookID, "codes")
+            
+            await setDoc(docCodebook, codebookData)
+            const docRef = await addDoc(subColRef, codeData)
             if(docRef){
                 navigate('/codebook')
             }
         }
-        addNewData(newData)
+        addNewData(codeData, codebookData)
     }
     
     return (
         <div className="create-code">
             <h3 className="page-title">New Code Snippet</h3>
             <form onSubmit={handleSubmit}>
+
+                {/* START title */}
                 <div className="formgroup">
                     <label htmlFor="">Title:</label>    
                     <input 
@@ -61,29 +78,60 @@ export default function CreateCode(){
                         required 
                     />
                 </div> 
-                <div className="formgroup">
-                    <label htmlFor="">Language:</label>
-                    <select name="mode" id="mode" 
-                        placeholder="mode"
-                        onChange={(e)=>handleSelectChange(e.target.value)} 
-                        value={mode}
-                    >
-                        <option value="xml">XML / HTML</option>    
-                        <option value="javascript">Javascript</option>    
-                        <option value="jsx">JSX</option>    
-                        <option value="css">CSS</option>    
-                        <option value="sass">SASS</option>    
-                    </select>    
+                {/* END title */}
+
+                {/* START Codebook */}
+                <div className="formgroup-hor">
+                    <div className="formgroup">
+                        <label htmlFor="new-codebook">New Codebook:</label>
+                        <input type="text" id="new-codebook" placeholder="ex: ReactJS"
+                            value={codebook}
+                            onChange={(e) => setCodebook(e.target.value)}
+                        />
+                    </div>
+                    <div className="formgroup">
+                        <label htmlFor="codebook">Current Codebook:</label>
+                        <select name="codebook" id="codebook"
+                            onChange={(e)=>{
+                                setCodebook(e.target.value)
+                            }}
+                            value={codebook}
+                        >
+                            <option value="">New Codebook</option>
+                            {codebooks && codebooks.map(item=>(
+                                <option key={item.id} value={item.name}>{item.name}</option>
+                            ))}    
+                        </select>    
+                    </div>
                 </div>
+                {/* END Codebook */}
+
+                {/* START Language */}
+                <div className="formgroup">
+                        <label htmlFor="language">Language:</label>
+                        <select name="language" id="language"
+                            onChange={(e)=>setLanguage(e.target.value)} 
+                            value={language}
+                        >
+                            <option value="" disabled>Select codebook</option>
+                            <option value="xml">XML/HTML</option>
+                            <option value="css">CSS</option>
+                            <option value="sass">SASS</option>
+                            <option value="javascript">Javascript</option>
+                            <option value="jsx">JSX</option>
+                            <option value="php">PHP</option>
+                        </select>    
+                    </div>
+                {/* END Language */}
+
+                {/* START Code snippet */}
                 <div className="formgroup">
                     <label htmlFor="">Code Snippet:</label>
-                    <div>
-                    </div>
                     <CodeMirror
                         value={codeSnippet}
                         options={{
-                            mode: mode,
-                            theme: 'material',
+                            mode: language,
+                            theme: 'dracula',
                             lineNumbers: true
                         }}
                         onChange={(editor, data, value) => {
@@ -91,6 +139,7 @@ export default function CreateCode(){
                         }}
                     />
                 </div>
+                {/* END Code snippet */}
                 <button className="btn">Add</button> 
             </form>
         </div>

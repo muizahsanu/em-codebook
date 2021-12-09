@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 // Firestore
-import { useFetch } from './firebase/useFetch';
+// import { useFetch } from './firebase/useFetch';
 
 // Styles
 import './App.scss';
@@ -13,10 +13,9 @@ import Sidebar from './components/Sidebar';
 import Navbar from './components/Navbar';
 import { useState } from 'react';
 import CreateCode from './pages/CreateCode';
-import CreateCodebook from './pages/CreateCodebook';
 
 function App() {
-  const {data} = useFetch()
+  // const {data} = useFetch()
   const [isLandingPage, setIsLandingPage] = useState(false)
 
   const handleIsLandingPage = (value) =>{
@@ -34,7 +33,7 @@ function App() {
             <Route path="/" element={<LandingPage handleIsLandingPage={handleIsLandingPage} /> } />
             <Route path="/codebook" element={<Codebook /> } />
             <Route path="/codebook/create-code" element={<CreateCode /> } />
-            <Route path="/codebook/create-codebook" element={<CreateCodebook /> } />
+            {/* <Route path="/codebook/create-codebook" element={<CreateCodebook /> } /> */}
           </Routes>
         </div>
       </BrowserRouter>
