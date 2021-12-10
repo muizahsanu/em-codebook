@@ -18,7 +18,7 @@ export default function CreateCode(){
     const navigate = useNavigate()
 
     const handleCodemirroInput = (value) =>{
-        console.log(value);
+        setCodeSnippet(value)
     }
 
     const handleSubmit = (e) =>{
